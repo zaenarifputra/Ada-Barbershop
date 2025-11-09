@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../theme/color.dart';
 import '../theme/text_style.dart';
+import 'profile_page.dart';
+import 'reward_page.dart';
+import 'settings_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,13 +53,13 @@ class _HomePageState extends State<HomePage> {
       case 0:
         return _homeContent();
       case 1:
-        return _placeholderPage('Halaman Profile');
+        return const ProfilePage();
       case 2:
         return _placeholderPage('Halaman QR Code');
       case 3:
         return _placeholderPage('Halaman Riwayat');
       case 4:
-        return _placeholderPage('Halaman Settings');
+        return const SettingsPage();
       default:
         return _homeContent();
     }
@@ -155,17 +158,18 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Expanded(
                   child: _actionPill(Icons.fingerprint, 'Absensi', true),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
                   child: _actionPill(Icons.calendar_today, 'Jadwal', false),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
                   child: _actionPill(Icons.card_giftcard, 'Reward', false),
-                ),
+                  ),
               ],
             ),
+
             const SizedBox(height: 24),
 
             // Outlet Card
@@ -458,7 +462,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _actionPill(IconData icon, String label, bool isActive) {
-    return Container(
+  return GestureDetector(
+    onTap: () {
+      if (label == 'Reward') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const RewardPage()),
+        );
+      }
+    },
+    child: Container(
       height: 80,
       decoration: BoxDecoration(
         color: isActive ? AppColor.primary.withOpacity(0.1) : Colors.white,
@@ -502,6 +515,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
+
 }
