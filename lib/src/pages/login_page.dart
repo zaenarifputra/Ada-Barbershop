@@ -33,11 +33,15 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               // logo kecil
               Padding(
-                padding: const EdgeInsets.only(top: 80),
-                child: Image.asset('assets/image/loglogin.png', width: 200, height: 200),
+                padding: const EdgeInsets.only(top: 20),
+                child: Image.asset(
+                'assets/image/logada2.png',
+                width: 170,
+                height: 170,
+                fit: BoxFit.contain,
               ),
-              const SizedBox(height: 80),
-
+              ),
+              const SizedBox(height: 100),
               // card form
               Card(
                 elevation: 2,
